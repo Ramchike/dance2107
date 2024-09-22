@@ -9,9 +9,6 @@ function App() {
   const [widget, setWidget] = useState<Widget>('browsing');
   return <>
     <ProfileWidget></ProfileWidget>
-    <FixedLayout>
-      <Footer setWidget={setWidget}></Footer>
-    </FixedLayout>
   </>
 }
 

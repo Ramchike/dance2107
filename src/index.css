@@ -1,7 +1,11 @@
-:root {
-  color: #89c9ff;
-  background-color: #232323;
+body {
+  height: var(--tg-viewport-height);
 }
+
+#root {
+  height: 100%;
+}
+
 a:hover {
   color: #747bff;
 }
