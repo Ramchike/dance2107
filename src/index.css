@@ -1,12 +1,14 @@
+:root {
+  --bg-auth: linear-gradient(180.00deg, rgba(18, 18, 18, 0.69),rgba(27, 0, 15, 0.83) 100%),rgb(35, 35, 35);
+  --bg-main: radial-gradient(58.01% 47.04% at 50% 50%,rgb(99, 7, 33),rgb(19, 19, 19) 100%);
+  
+  --pink: rgb(255, 108, 166)
+}
+
 body {
-  height: var(--tg-viewport-height);
+  margin: 0;
 }
 
 #root {
   height: 100%;
 }
-
-a:hover {
-  color: #747bff;
-}
-

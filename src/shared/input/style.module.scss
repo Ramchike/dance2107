@@ -1,0 +1,19 @@
+.input {
+    width: 298px;
+    height: 38px;
+    padding: 4px;
+    padding-top: 10px;
+    padding-left: 20px;
+    border-radius: 12px;
+    border: 0.5px solid;
+    border-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: var(--pink);
+    transition: border-color 0.3s ease;
+    &:hover {
+        border: 0.5px solid;
+        border-color: var(--pink);
+    }
+}

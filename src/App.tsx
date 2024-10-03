@@ -1,15 +1,10 @@
-import { useState } from 'react'
-import {ProfileWidget} from "./widgets/profile/profile.tsx";
-import {FixedLayout} from "@telegram-apps/telegram-ui";
-import Footer from "./widgets/footer/footer.tsx";
+import Auth from './pages/auth/ui/auth'
 
 export type Widget = 'profile' | 'browsing'
 
-function App() {
-  const [widget, setWidget] = useState<Widget>('browsing');
-  return <>
-    <ProfileWidget></ProfileWidget>
-  </>
+export default function App() {
+  // логика на получение пользователя
+
+  return <Auth/>
 }
 
-export default App
