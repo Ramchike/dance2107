@@ -4,19 +4,23 @@
     padding: 4px;
     font-family: Roboto Condensed;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
+    transition: color 0s;
+    background-color: var(--main-color);
+    border-radius: 4px;
     &[data-active="YES"] {
-        border-radius: 6px;
-        background-color: var(--pink);
         color: black;
         border: none;
-        box-shadow: 0px 0px 46px 0px rgba(255, 108, 166, 0.2);
     }
     &[data-active="NO"] {
-        opacity: 0.7;
-        border-radius: 2px;
+        opacity: 0;
+    }
+    &[data-style="outfill"] {
         background-color: transparent;
-        color: var(--pink);
-        border: 0.5px solid var(--pink)
+        color: var(--main-color);
+        border: 0.5px solid var(--main-color)
+    }
+    &[data-style="fill"] {
+        box-shadow: var(--shadow-color);
     }
 }
