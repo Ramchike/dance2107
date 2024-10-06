@@ -1,6 +1,14 @@
 .container-input {
     background-repeat:no-repeat;
     background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .help {
+        width: 100%;
+        text-align: center;
+    }
 
     width: 298px;
     height: 298px;

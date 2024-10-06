@@ -80,11 +80,11 @@ export default function Auth() {
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Имя</span>
-            <Input hookValue={name} hook={setName}></Input>
+            <Input value={name} hook={setName}></Input>
         </div>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Фамилия</span>
-            <Input hookValue={family} hook={setFamily}></Input>
+            <Input value={family} hook={setFamily}></Input>
         </div>
     </div>
 
@@ -92,11 +92,11 @@ export default function Auth() {
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Выберите пол</span>
-            <Select value={sex || 'none'} options={Sexs} title='Пол' hookFunc={setSex}/>
+            <Select value={sex || 'none'} options={Sexs} title='Пол' hook={setSex}/>
         </div>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Выберите класс</span>
-            <Select value={litera || 'none'} options={Literales} title='Класс' hookFunc={setLitera}/>
+            <Select value={litera || 'none'} options={Literales} title='Класс' hook={setLitera}/>
         </div>
     </div>
 
@@ -104,7 +104,7 @@ export default function Auth() {
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Ваше фото</span>
-            <InputImg src={image} hookFunc={setImage}/>
+            <InputImg src={image} hook={setImage}/>
         </div>
     </div>
 
@@ -112,7 +112,7 @@ export default function Auth() {
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
             <span className={styles['title']}>О себе</span>
-            <TextArea value={about} hookFunc={setAbout}/>
+            <TextArea value={about} hook={setAbout}/>
         </div>
     </div>
 
