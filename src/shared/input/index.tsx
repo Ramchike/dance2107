@@ -7,5 +7,5 @@ interface Props {
 }
 
 export function Input({hookValue, hook}: Props) {
-    return <input className={styles['input']} type="text" value={hookValue} onChange={e => hook(e.target.value)}/>
+    return <input className={styles['input']} type={'text'} value={hookValue} onChange={e => hook(e.target.value)}/>
 }

@@ -2,6 +2,8 @@ import styles from './style.module.scss'
 import { ReactElement, useEffect, useState } from "react";
 import { Sex, Stage } from "../model/types";
 import { Input, Button, Select, Option, white2107, blue2107, pink2107 } from '../../../shared';
+import { InputImg } from '../../../shared/input/img-input';
+import { TextArea } from '../../../shared/input/textarea';
 
 export default function Auth() {
     const [theme, setTheme] = useState<'pink' | 'blue' | null>(null)
@@ -9,7 +11,8 @@ export default function Auth() {
     const [name, setName] = useState<string>('')
     const [family, setFamily] = useState<string>('')
     const [sex, setSex] = useState<Sex|null>(null)
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState<string | undefined>(undefined)
+    const [about, setAbout] = useState<string>('')
     const [subImages, setSubImages] = useState(null)
     const [litera, setLitera] = useState<string|null>(null)
 
@@ -31,6 +34,9 @@ export default function Auth() {
             return true
         }
         else if (stage == Stage.NAME && name.length > 0 && family.length > 0) {
+            return true
+        }
+        else if (stage == Stage.PHOTO && image) {
             return true
         }
         else {
@@ -82,17 +88,33 @@ export default function Auth() {
         </div>
     </div>
 
-const inputSex = 
-<div className={styles["input-list"]}>
-    <div className={styles['input-block']}>
-        <span className={styles['title']}>Выберите пол</span>
-        <Select value={sex || 'none'} options={Sexs} title='Пол' hookFunc={setSex}/>
+    const inputSex = 
+    <div className={styles["input-list"]}>
+        <div className={styles['input-block']}>
+            <span className={styles['title']}>Выберите пол</span>
+            <Select value={sex || 'none'} options={Sexs} title='Пол' hookFunc={setSex}/>
+        </div>
+        <div className={styles['input-block']}>
+            <span className={styles['title']}>Выберите класс</span>
+            <Select value={litera || 'none'} options={Literales} title='Класс' hookFunc={setLitera}/>
+        </div>
     </div>
-    <div className={styles['input-block']}>
-        <span className={styles['title']}>Выберите класс</span>
-        <Select value={litera || 'none'} options={Literales} title='Класс' hookFunc={setLitera}/>
+
+    const inputImg =
+    <div className={styles["input-list"]}>
+        <div className={styles['input-block']}>
+            <span className={styles['title']}>Ваше фото</span>
+            <InputImg src={image} hookFunc={setImage}/>
+        </div>
     </div>
-</div>
+
+    const inputAbout =
+    <div className={styles["input-list"]}>
+        <div className={styles['input-block']}>
+            <span className={styles['title']}>О себе</span>
+            <TextArea value={about} hookFunc={setAbout}/>
+        </div>
+    </div>
 
     const inputNow = (): ReactElement => {
         switch (stage) {
@@ -100,6 +122,10 @@ const inputSex =
                 return inputName;
             case Stage.SUBINFO:
                 return inputSex
+            case Stage.PHOTO:
+                return inputImg
+            case Stage.ABOUT:
+                return inputAbout
             default:
                 return inputName;
         }

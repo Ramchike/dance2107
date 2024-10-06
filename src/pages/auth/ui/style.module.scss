@@ -7,8 +7,6 @@
 
     --main-color: var(--white);
 
-
-
     &[data-theme='pink'] {
         --bg-auth: linear-gradient(180.00deg, rgba(18, 18, 18, 0.69),rgba(34, 0, 19, 0.83) 100%),rgb(48, 48, 48);
         --main-color: var(--pink);

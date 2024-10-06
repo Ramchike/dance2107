@@ -1,4 +1,5 @@
 export * from './input'
+export * from './input/img-input'
 export * from './button'
 export * from './select'
 export * from './assets'

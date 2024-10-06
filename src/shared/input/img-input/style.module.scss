@@ -1,12 +1,10 @@
-.input {
-    font-size: 14px;
-    font-family: Roboto;
-    font-weight: 400;
+.container-input {
+    background-repeat:no-repeat;
+    background-position: center center;
 
     width: 298px;
-    height: 38px;
+    height: 298px;
     //padding: 4px;
-    padding-left: 20px;
     border-radius: 12px;
     border: 1px solid;
     border-color: rgba(0, 0, 0, 0);
@@ -16,12 +14,12 @@
     color: var(--main-color);
     transition: border-color 0.2s ease;
     outline: none;
-    text-align: left;
     &:focus {
         border-color: var(--main-color);
     }
-
-    &[data-type='file'] {
-        height: 298px;
+    .input {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
     }
 }
