@@ -4,6 +4,9 @@
 :root {
   --bg-main: radial-gradient(58.01% 47.04% at 50% 50%,rgb(99, 7, 33),rgb(19, 19, 19) 100%);
   --font-system: Roboto;
+
+  --photo-form-size-w: 290px;
+  --photo-form-size-h: 552px;
 }
 
 body {

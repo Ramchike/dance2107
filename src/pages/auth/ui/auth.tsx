@@ -1,19 +1,16 @@
 import styles from './style.module.scss'
 import { ReactElement, useEffect, useState } from "react";
 import { Sex, Stage } from "../model/types";
-import { Input, Button, Select, Option, white2107, blue2107, pink2107 } from '../../../shared';
-import { InputImg } from '../../../shared/input/img-input';
-import { TextArea } from '../../../shared/input/textarea';
+import {Input, Button, Select, Option, InputImg, TextArea,  white2107, blue2107, pink2107 } from '../../../shared';
 
 export default function Auth() {
     const [theme, setTheme] = useState<'pink' | 'blue' | null>(null)
     const [stage, setStage] = useState<Stage>(Stage.SUBINFO)
     const [name, setName] = useState<string>('')
     const [family, setFamily] = useState<string>('')
-    const [sex, setSex] = useState<Sex|null>(null)
+    const [sex, setSex] = useState<string>('')
     const [image, setImage] = useState<string | undefined>(undefined)
     const [about, setAbout] = useState<string>('')
-    const [subImages, setSubImages] = useState(null)
     const [litera, setLitera] = useState<string|null>(null)
 
     useEffect(() => {
@@ -143,11 +140,11 @@ export default function Auth() {
     }
 
     return <main data-theme={theme} className={styles['main']}>
-        <img className={styles['logo']} src={imgNow()}></img>
+        {stage != Stage.PHOTO ? <img className={styles['logo']} src={imgNow()}></img> : <></>}
         {inputNow()}
         <section className={styles['buttons']}>
-        <Button text='Продолжить' hook={() => setStage(stage+1)} active={checkActive()}/>
-        <Button text='Назад' style='outfill' hook={() => setStage(stage-1)} active={stage > 0}/>
+        <Button text='Продолжить' hook={() => setStage(stage + 1)} active={checkActive()}/>
+        <Button text='Назад' style='outfill' hook={() => setStage(stage - 1)} active={stage > 0}/>
         </section>
     </main>
     

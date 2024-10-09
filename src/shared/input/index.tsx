@@ -1,6 +1,5 @@
 import styles from './style.module.scss'
 
-
 interface Props {
     hook: (value: string) => void
     value: string
