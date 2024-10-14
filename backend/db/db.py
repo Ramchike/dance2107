@@ -3,7 +3,6 @@ from config import DB_URL
 
 engine = create_engine(url=DB_URL, echo=True)
 
-
 def create_all():
     SQLModel.metadata.create_all
 
