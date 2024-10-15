@@ -1,7 +1,5 @@
-import asyncio
-from fastapi import FastAPI
-from schemas import user
-from db.db import connect, create_all
+import uvicorn
+
 
 if __name__ == "__main__":
-    create_all()
+    uvicorn.run("src:app", port=666, reload=True)
