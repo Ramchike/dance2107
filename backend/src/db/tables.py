@@ -7,7 +7,7 @@ class User(SQLModel, table=True):
     __tablename__ = "users"
 
     id: int = Field(sa_column=Column(BigInteger(), primary_key=True))
-    avatars: list["Avatar"] = Relationship()
+    avatars: list["Avatar"] = Relationship(back_populates="avatars")
     sex: bool
     name: str
     surname: str
