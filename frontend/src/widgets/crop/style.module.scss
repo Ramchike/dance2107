@@ -1,0 +1,15 @@
+.main {
+    background: black;
+    height: 100vh;
+    .container-cropper {
+        height: 80%;
+    }
+    .buttons {
+        gap: 16px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

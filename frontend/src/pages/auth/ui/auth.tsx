@@ -2,7 +2,7 @@ import styles from './style.module.scss'
 import { ReactElement, useEffect, useState } from "react";
 import { Sex, Stage } from "../model/types";
 import {Input, Button, Select, Option, InputImg, TextArea,  white2107, blue2107, pink2107 } from '../../../shared';
-import Cropper from 'react-easy-crop';
+import { CropWidget } from '../../../widgets';
 
 export default function Auth() {
     const [theme, setTheme] = useState<'pink' | 'blue' | null>(null)
@@ -98,29 +98,17 @@ export default function Auth() {
         </div>
     </div>
 
-    const [zoom, setZoom] = useState(1)
-    const [crop, setCrop] = useState({x: 0, y: 0})
-    const inputImg =
-    <div className={styles["input-list"]}>
-        <div className='container-input' style={{position: 'relative'}}>
-            { image ?
-            <Cropper
-            image={image}
-            showGrid={false}
-            cropSize={{width: 290, height: 552}}
-            zoom={zoom}
-            crop={crop}
-            onZoomChange={setZoom}
-            onCropChange={setCrop}
-            /> 
-            : <></>
-            }
+    const [isCropping, setCropping] = useState(true)
+    const startCropping = (img: string) => {
+        setImage(img)
+        setCropping(true)
+    }
+    const inputImg = <div className={styles["input-list"]}>
             <div className={styles['input-block']}>
-                <span className={styles['title']}>Ваше фото</span>
-                <InputImg src={image} hook={setImage}/>
+                    <span className={styles['title']}>Ваше фото</span>
+                    <InputImg src={image} hook={startCropping}/>
             </div>
         </div>
-    </div>
 
     const inputAbout =
     <div className={styles["input-list"]}>
@@ -156,13 +144,22 @@ export default function Auth() {
         }
     }
 
-    return <main data-theme={theme} className={styles['main']}>
+    if (stage == Stage.PHOTO && isCropping && image) {
+        return <CropWidget
+        img={image}
+        setImg={setImage}
+        onComplete={() => setCropping(false)}
+    />
+    }
+    else {
+        return <main data-theme={theme} className={styles['main']}>
         {stage != Stage.PHOTO ? <img className={styles['logo']} src={imgNow()}></img> : <></>}
         {inputNow()}
         <section className={styles['buttons']}>
-        <Button text='Продолжить' hook={() => setStage(stage + 1)} active={checkActive()}/>
-        <Button text='Назад' style='outfill' hook={() => setStage(stage - 1)} active={stage > 0}/>
+            <Button text='Продолжить' hook={() => setStage(stage + 1)} active={checkActive()}/>
+            <Button text='Назад' style='outfill' hook={() => setStage(stage - 1)} active={stage > 0}/>
         </section>
     </main>
+    }
     
 }
