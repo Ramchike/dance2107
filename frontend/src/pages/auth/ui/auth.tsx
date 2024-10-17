@@ -2,6 +2,7 @@ import styles from './style.module.scss'
 import { ReactElement, useEffect, useState } from "react";
 import { Sex, Stage } from "../model/types";
 import {Input, Button, Select, Option, InputImg, TextArea,  white2107, blue2107, pink2107 } from '../../../shared';
+import Cropper from 'react-easy-crop';
 
 export default function Auth() {
     const [theme, setTheme] = useState<'pink' | 'blue' | null>(null)
@@ -89,19 +90,35 @@ export default function Auth() {
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Выберите пол</span>
-            <Select value={sex || 'none'} options={Sexs} title='Пол' hook={setSex}/>
+            <Select value={sex || ''} options={Sexs} title='Пол' hook={setSex}/>
         </div>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Выберите класс</span>
-            <Select value={litera || 'none'} options={Literales} title='Класс' hook={setLitera}/>
+            <Select value={litera || ''} options={Literales} title='Класс' hook={setLitera}/>
         </div>
     </div>
 
+    const [zoom, setZoom] = useState(1)
+    const [crop, setCrop] = useState({x: 0, y: 0})
     const inputImg =
     <div className={styles["input-list"]}>
-        <div className={styles['input-block']}>
-            <span className={styles['title']}>Ваше фото</span>
-            <InputImg src={image} hook={setImage}/>
+        <div className='container-input' style={{position: 'relative'}}>
+            { image ?
+            <Cropper
+            image={image}
+            showGrid={false}
+            cropSize={{width: 290, height: 552}}
+            zoom={zoom}
+            crop={crop}
+            onZoomChange={setZoom}
+            onCropChange={setCrop}
+            /> 
+            : <></>
+            }
+            <div className={styles['input-block']}>
+                <span className={styles['title']}>Ваше фото</span>
+                <InputImg src={image} hook={setImage}/>
+            </div>
         </div>
     </div>
 
