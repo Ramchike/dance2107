@@ -35,7 +35,14 @@ export function CropWidget({img, setImg, onComplete}: Props): ReactElement {
         setArea(croppedAreaPixels)
     }
 
+    const style = {
+        border: '2px dashed',
+        borderColor: 'var(--main-color)',
+        borderRadius: '8px'
+    }
+
     const cropper = <Cropper
+        style={{cropAreaStyle: style}}
         image={img}
         showGrid={false}
         cropSize={{width: 290, height: 552}}
