@@ -7,7 +7,7 @@ from config import LITERALIS
 
 class Sex(Enum):
     MALE = 0
-    WOMAN = 0
+    WOMAN = 1
 
 class UserCreate(BaseModel):
     id: int

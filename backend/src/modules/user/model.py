@@ -11,7 +11,7 @@ class User(SQLModel, table=True):
     sex: bool
     name: str
     surname: str
-    focus_id: Optional[int] = Field(default=None)
+    focus_id: Optional[int] = Field(default=None, foreign_key="users.id")
     litera: LITERALIS = Field(sa_type=String)
     
 class Like(SQLModel, table=True):
@@ -31,3 +31,4 @@ class Avatar(SQLModel, table=True):
 
     id: str = Field(primary_key=True)
     user_id: int = Field(foreign_key="users.id")
+    user: "User" = Relationship(back_populates="avatars")
