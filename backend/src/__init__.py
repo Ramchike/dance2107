@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.concurrency import asynccontextmanager
-from db.tables import *
-from base.database import init_db
+from .modules import *
+from .base.db import init_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -13,3 +13,6 @@ app = FastAPI(
     title="Davinchik2107",
     lifespan=lifespan,
 )
+
+for route in routers:
+    app.include_router(route)

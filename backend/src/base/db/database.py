@@ -1,12 +1,16 @@
 from sqlmodel import SQLModel
-from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from config import DB_URL
-from src.db.tables import User
 
 engine = create_async_engine(
     url=DB_URL, 
     echo=True
 )
+
+def get_session() -> AsyncSession:
+    session = async_sessionmaker(engine)
+    return session()
+
 
 async def init_db():
     async with engine.begin() as conn:

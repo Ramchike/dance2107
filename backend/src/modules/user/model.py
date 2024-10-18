@@ -1,6 +1,7 @@
-from typing import Optional
-from sqlalchemy import BigInteger, Column
+from typing import Literal, Optional
+from sqlalchemy import BigInteger, Column, String
 from sqlmodel import Field, Relationship, SQLModel
+from config import LITERALIS
     
 class User(SQLModel, table=True):
     __tablename__ = "users"
@@ -10,14 +11,9 @@ class User(SQLModel, table=True):
     sex: bool
     name: str
     surname: str
+    focus_id: Optional[int] = Field(default=None)
+    litera: LITERALIS = Field(sa_type=String)
     
-class LinkUser(SQLModel, table=True):
-    __tablename__ = "link_users"
-    
-    id: int = Field(foreign_key = "users.id")
-    focus_id: Optional[int] = Field(foreign_key = "users.id", default=None)
-    
-
 class Like(SQLModel, table=True):
     __tablename__ = "likes"
 
@@ -25,6 +21,10 @@ class Like(SQLModel, table=True):
     from_id: int = Field(foreign_key="users.id")
     to_id: int = Field(foreign_key="users.id")
     is_reverse: bool
+
+class Dolbaeb2107(SQLModel, table=True):
+    id: int = Field(primary_key=True)
+    name: str
 
 class Avatar(SQLModel, table=True):
     __tablename__ = "avatars"

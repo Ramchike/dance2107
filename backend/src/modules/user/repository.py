@@ -1,6 +1,43 @@
-from backend.src.base.interface.repository import Repository
-from .dto import UserCreate
+from src.base.interface.repository import Repository
+from .model import Dolbaeb2107, User
 
 
 class UserRepository(Repository):
-    async def get_by_id(id: int, data: UserCreate)
+
+    async def add(self, data: User) -> User:
+        self.session.add(data)
+        await self.session.commit()
+        await self.session.refresh(data)
+        return data
+    
+    async def get():
+        pass
+
+    async def delete():
+        pass
+
+    async def list():
+        pass
+
+    async def update():
+        pass
+
+class DolbaebRepository(Repository):
+
+    async def add(self, data: Dolbaeb2107) -> Dolbaeb2107:
+        self.session.add(data)
+        await self.session.commit()
+        await self.session.refresh(data)
+        return data
+    
+    async def get():
+        pass
+
+    async def delete():
+        pass
+
+    async def list():
+        pass
+
+    async def update():
+        pass

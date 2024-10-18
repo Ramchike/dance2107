@@ -1,8 +1,9 @@
 from typing import Literal
 from pydantic import BaseModel
 from enum import Enum
-from backend.config import LITERALIS
 
+from sqlmodel import SQLModel
+from config import LITERALIS
 
 class Sex(Enum):
     MALE = 0
@@ -20,3 +21,4 @@ class UserGet(BaseModel):
     name: str
     surname: str
     avatar: str
+    litera: LITERALIS
