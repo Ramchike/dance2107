@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.concurrency import asynccontextmanager
-from src.db.db import init_db
+from db.tables import *
+from base.database import init_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
