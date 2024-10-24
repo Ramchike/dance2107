@@ -147,25 +147,21 @@ export default function Auth() {
     }
 
     const submitUser = () => {
-        let avatarData: Buffer
         if (image) {
-            // Fetch the image and convert it to a Buffer
             fetch(image)
-            .then(res => res.blob()
-            .then(blob => blob.arrayBuffer()
-            .then(buffer => {
-                avatarData = Buffer.from(buffer)
-                const userData: UserRegister = {
-                    name,
-                    surname,
-                    male: sex == Sex.MALE,
-                    attachments: avatarData,
-                    desc,
-                    literal: literal ? literal : ''
-                }
-                register(userData).then(updateUser)
-            })))
-        }
+                .then(res => res.blob())
+                .then(blob => {
+                    console.log(blob)
+                    const userData: UserRegister = {
+                        name,
+                        surname,
+                        male: sex === Sex.MALE,
+                        desc,
+                        literal: literal ? literal : ''
+                    };
+                    register(userData, blob).then(updateUser);
+                })
+            }
     }
 
     if (stage == Stage.PHOTO && isCropping && image) {
