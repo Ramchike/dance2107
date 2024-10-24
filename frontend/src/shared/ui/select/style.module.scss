@@ -16,6 +16,7 @@
     transition: color 1s ease;
     color: var(--main-color);
     transition: border-color 0.2s ease;
+    transition: background-color 1s ease;
     outline: none;
 
     &:focus {

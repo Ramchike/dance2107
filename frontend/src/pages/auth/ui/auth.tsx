@@ -1,52 +1,12 @@
 import styles from './style.module.scss'
-import { ReactElement, useEffect, useState } from "react";
-import { Sex, Stage } from "../model/types";
+import { ReactElement, useContext, useEffect, useState } from "react";
+import { Sex, Stage, UserRegister } from "../model/types";
 import {Input, Button, Select, Option, InputImg, TextArea,  white2107, blue2107, pink2107 } from '../../../shared';
 import { CropWidget } from '../../../widgets';
+import { UserContext } from '../../../app/providers';
+import { register } from '../api/api';
 
 export default function Auth() {
-    const [theme, setTheme] = useState<'pink' | 'blue' | null>(null)
-    const [stage, setStage] = useState<Stage>(Stage.SUBINFO)
-    const [name, setName] = useState<string>('')
-    const [family, setFamily] = useState<string>('')
-    const [sex, setSex] = useState<string>('')
-    const [image, setImage] = useState<string | undefined>(undefined)
-    const [about, setAbout] = useState<string>('')
-    const [litera, setLitera] = useState<string|null>(null)
-
-    useEffect(() => {
-        switch (sex) {
-            case Sex.MALE:
-                setTheme('blue')
-                break
-            case Sex.WOMAN:
-                setTheme('pink')
-                break
-            default:
-                break
-        }
-    }, [sex])
-
-    const checkActive = ():boolean => {
-        if (stage == Stage.SUBINFO && litera && sex) {
-            return true
-        }
-        else if (stage == Stage.NAME && name.length > 0 && family.length > 0) {
-            return true
-        }
-        else if (stage == Stage.PHOTO && image) {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-
-    const Sexs: Option[] = [
-        {key: "male", value: "Мужчина"},
-        {key: "woman", value: "Женщина"}
-    ]
-
     const Literales: Option[] = [
         {key: "10k", value: "10К"},
         {key: "10c", value: "10С"},
@@ -74,6 +34,48 @@ export default function Auth() {
         {key: "11p", value: "11П"},
     ]
 
+    const {updateUser} = useContext(UserContext)
+    const [theme, setTheme] = useState<'pink' | 'blue' | null>(null)
+    const [stage, setStage] = useState<Stage>(Stage.SUBINFO)
+    const [name, setName] = useState<string>('')
+    const [surname, setSurname] = useState<string>('')
+    const [sex, setSex] = useState<string>('')
+    const [image, setImage] = useState<string | undefined>(undefined)
+    const [desc, setDesc] = useState<string>('')
+    const [literal, setLiteral] = useState<string|null>(null)
+
+    useEffect(() => {
+        switch (sex) {
+            case Sex.MALE:
+                setTheme('blue')
+                break
+            case Sex.WOMAN:
+                setTheme('pink')
+                break
+            default:
+                break
+        }
+    }, [sex])
+
+    const checkActive = ():boolean => {
+        if (stage == Stage.SUBINFO && literal && sex) {
+            return true
+        } else if (stage == Stage.NAME && name.length > 0 && surname.length > 0) {
+            return true
+        } else if (stage == Stage.PHOTO && image) {
+            return true
+        } else if (stage == Stage.ABOUT && desc.length >= 4) {
+            return true
+        } else {
+            return false;
+        }
+    }
+
+    const Sexs: Option[] = [
+        {key: "male", value: "Мужчина"},
+        {key: "woman", value: "Женщина"}
+    ]
+
     const inputName = 
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
@@ -82,7 +84,7 @@ export default function Auth() {
         </div>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Фамилия</span>
-            <Input value={family} hook={setFamily}></Input>
+            <Input value={surname} hook={setSurname}></Input>
         </div>
     </div>
 
@@ -94,7 +96,7 @@ export default function Auth() {
         </div>
         <div className={styles['input-block']}>
             <span className={styles['title']}>Выберите класс</span>
-            <Select value={litera || ''} options={Literales} title='Класс' hook={setLitera}/>
+            <Select value={literal || ''} options={Literales} title='Класс' hook={setLiteral}/>
         </div>
     </div>
 
@@ -114,7 +116,7 @@ export default function Auth() {
     <div className={styles["input-list"]}>
         <div className={styles['input-block']}>
             <span className={styles['title']}>О себе</span>
-            <TextArea value={about} hook={setAbout}/>
+            <TextArea value={desc} hook={setDesc}/>
         </div>
     </div>
 
@@ -144,6 +146,20 @@ export default function Auth() {
         }
     }
 
+    const submitUser = () => {
+        const avatarData = new FormData()
+        if (image) fetch(image).then(res => res.blob()).then(blob => avatarData.append("image", new File([blob], "")))
+        const userData: UserRegister = {
+            name,
+            surname,
+            male: sex == Sex.MALE,
+            attachments: avatarData,
+            desc,
+            literal: literal ? literal : ''
+        }
+        register(userData).then(updateUser)
+    }
+
     if (stage == Stage.PHOTO && isCropping && image) {
         return <CropWidget
         img={image}
@@ -156,7 +172,10 @@ export default function Auth() {
         {stage != Stage.PHOTO ? <img className={styles['logo']} src={imgNow()}></img> : <></>}
         {inputNow()}
         <section className={styles['buttons']}>
-            <Button text='Продолжить' hook={() => setStage(stage + 1)} active={checkActive()}/>
+            {stage == Stage.ABOUT ? 
+            <Button text='Отправить' hook={submitUser} active={checkActive()}/>
+            : <Button text='Продолжить' hook={() => setStage(stage + 1)} active={checkActive()}/>
+            }
             <Button text='Назад' style='outfill' hook={() => setStage(stage - 1)} active={stage > 0}/>
         </section>
     </main>

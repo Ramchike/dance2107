@@ -9,3 +9,12 @@ export enum Sex {
     MALE = "male",
     WOMAN = "woman",
 }
+
+export interface UserRegister {
+    name: string
+    surname: string
+    literal: string
+    male: boolean
+    desc: string
+    attachments: FormData
+}

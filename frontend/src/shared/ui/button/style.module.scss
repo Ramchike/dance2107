@@ -8,6 +8,7 @@
     transition: color 0s;
     background-color: var(--main-color);
     border-radius: 4px;
+    transition: background-color 1s ease;
     &[data-active="YES"] {
         color: black;
         border: none;
