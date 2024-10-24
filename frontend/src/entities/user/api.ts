@@ -7,6 +7,7 @@ export async function getUser(): Promise<User|null> {
             return response.data
         }
     ).catch(error => {
+        console.log(error)
         return null
     })
 }

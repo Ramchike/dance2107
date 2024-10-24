@@ -7,7 +7,6 @@ export type Widget = 'profile' | 'browsing'
 export default function App() {
   const {user} = useContext(UserContext)
   if (user === undefined) {
-    console.log(user)
     return <>Загрузка</>
   } else if (user === null) {
     return <Auth></Auth>

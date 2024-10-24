@@ -148,7 +148,7 @@ export default function Auth() {
 
     const submitUser = () => {
         const avatarData = new FormData()
-        if (image) fetch(image).then(res => res.blob()).then(blob => avatarData.append("image", new File([blob], "")))
+        if (image) fetch(image).then(res => res.blob()).then(blob => avatarData.append("image", new File([blob], "avatar")))
         const userData: UserRegister = {
             name,
             surname,
