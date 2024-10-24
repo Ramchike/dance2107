@@ -147,17 +147,25 @@ export default function Auth() {
     }
 
     const submitUser = () => {
-        const avatarData = new FormData()
-        if (image) fetch(image).then(res => res.blob()).then(blob => avatarData.append("image", new File([blob], "avatar")))
-        const userData: UserRegister = {
-            name,
-            surname,
-            male: sex == Sex.MALE,
-            attachments: avatarData,
-            desc,
-            literal: literal ? literal : ''
+        let avatarData: Buffer
+        if (image) {
+            // Fetch the image and convert it to a Buffer
+            fetch(image)
+            .then(res => res.blob()
+            .then(blob => blob.arrayBuffer()
+            .then(buffer => {
+                avatarData = Buffer.from(buffer)
+                const userData: UserRegister = {
+                    name,
+                    surname,
+                    male: sex == Sex.MALE,
+                    attachments: avatarData,
+                    desc,
+                    literal: literal ? literal : ''
+                }
+                register(userData).then(updateUser)
+            })))
         }
-        register(userData).then(updateUser)
     }
 
     if (stage == Stage.PHOTO && isCropping && image) {

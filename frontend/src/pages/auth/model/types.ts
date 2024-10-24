@@ -16,5 +16,5 @@ export interface UserRegister {
     literal: string
     male: boolean
     desc: string
-    attachments: FormData
+    attachments: Buffer
 }
