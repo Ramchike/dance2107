@@ -2,13 +2,14 @@ from typing import Literal, Optional
 from sqlalchemy import BigInteger, Column, String
 from sqlmodel import Field, Relationship, SQLModel
 from config import LITERALIS
+from .dto import Sex
     
 class User(SQLModel, table=True):
     __tablename__ = "users"
 
     id: int = Field(sa_column=Column(BigInteger(), primary_key=True))
     avatars: list["Avatar"] = Relationship(back_populates="user")
-    sex: bool
+    sex: Sex
     name: str
     surname: str
     focus_id: Optional[int] = Field(default=None, foreign_key="users.id")
