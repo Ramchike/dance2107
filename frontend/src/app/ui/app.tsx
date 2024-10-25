@@ -7,7 +7,7 @@ import { Router } from '../router/router'
 
 export type Page = 'feed' | 'history' | 'edit'
 
-export default function App() {
+export function App() {
   const {user} = useContext(UserContext)
   const [page, setPage] = useState<Page>('feed')
 
