@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import App from './ui/app.tsx'
 import './index.scss'
 import UserProvider from './providers/userProvider.tsx'
 

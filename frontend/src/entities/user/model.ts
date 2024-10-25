@@ -6,4 +6,7 @@ export type User = {
     male: boolean
     is_active: boolean
     attachments: string[]
+    focus_user: FocusUser
 }
+
+export type FocusUser = Omit<User, 'is_active'>

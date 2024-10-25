@@ -6,7 +6,7 @@ import { CropWidget } from '../../../widgets';
 import { UserContext } from '../../../app/providers';
 import { register } from '../api/api';
 
-export default function Auth() {
+export function Auth() {
     const Literales: Option[] = [
         {key: "10k", value: "10К"},
         {key: "10c", value: "10С"},
@@ -159,7 +159,9 @@ export default function Auth() {
                         desc,
                         literal: literal ? literal : ''
                     };
-                    register(userData, blob).then(updateUser);
+                    const avatarForm = new FormData();
+                    avatarForm.append('avatar', blob)
+                    register(userData, avatarForm).then(updateUser);
                 })
             }
     }
@@ -184,5 +186,4 @@ export default function Auth() {
         </section>
     </main>
     }
-    
 }

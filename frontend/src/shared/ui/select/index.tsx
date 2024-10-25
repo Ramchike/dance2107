@@ -16,6 +16,6 @@ interface Props {
 export function Select({value, options, hook, title}: Props) {
     return <select value={value} className={styles['select']} defaultValue={title} onChange={(e) => hook(e.target.value)}>
         <option value={''} selected hidden disabled>{title}</option>
-        {options.map((option: Option) => <option value={option.key}>{option.value}</option>)}
+        {options.map((option: Option) => <option key={option.key} value={option.value}>{option.value}</option>)}
     </select>
 }

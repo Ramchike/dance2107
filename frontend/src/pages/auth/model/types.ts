@@ -6,8 +6,8 @@ export enum Stage {
 }
 
 export enum Sex {
-    MALE = "male",
-    WOMAN = "woman",
+    MALE = "Мужчина",
+    WOMAN = "Женщина",
 }
 
 export interface UserRegister {

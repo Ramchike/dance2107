@@ -6,7 +6,7 @@ export const UserClient = axios.create({
 })
 
 UserClient.interceptors.request.use(config => {
-    config.headers['Tg-Authorization'] = Telegram.WebApp.initData 
+    config.headers['Tg-Authorization'] = 1
     return config
 })
 
