@@ -1,6 +1,6 @@
 import { FocusUser} from "../../entities";
 import { Feed, Edit, History } from "../../pages";
-import { Page } from "../ui/App";
+import { Page } from "../ui/app";
 
 interface Props {
     page: Page

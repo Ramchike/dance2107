@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .container {
+        height: 574px;
+        .button-list {
+            display: flex;
+            position: relative;
+            top: -40px;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+            gap: 32px;
+            .button {
+                width: 72px;
+                height: 72px;
+                background-color: var(--button-color);
+                border: 0;
+                border-radius: 180px;
+                .icon svg {
+                    opacity: 0.8;
+                    width: 34px;
+                    height: 34px;
+                    path {
+                        fill: white;
+                    }
+                }
+            }
+        }
+    }
+}

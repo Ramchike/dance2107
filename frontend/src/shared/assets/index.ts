@@ -5,6 +5,8 @@ import pink2107 from './logo/2107pin.png'
 import editIcon from './svg/edit.svg'
 import feedIcon from './svg/feed.svg'
 import historyIcon from './svg/history.svg'
+import like from './svg/heart.svg'
+import cancel from './svg/cancel.svg'
 
 export {
     white2107, 
@@ -12,5 +14,7 @@ export {
     pink2107,
     editIcon,
     feedIcon,
-    historyIcon
+    historyIcon,
+    like,
+    cancel
 }
