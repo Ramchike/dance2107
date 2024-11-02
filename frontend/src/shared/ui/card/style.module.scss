@@ -3,8 +3,9 @@
 }
 
 .bg {
-    width: calc(var(--photo-form-size-w) - 1px);
-    height: calc(var(--photo-form-size-h) - 1px);
+    width: calc(var(--photo-form-size-w));
+    height: calc(var(--photo-form-size-h));
+    overflow: hidden;
     border-radius: 30px;
 }
 
@@ -14,26 +15,21 @@
     gap: 16px;
     width: calc(var(--photo-form-size-w));
     height: calc(var(--photo-form-size-h));
-    box-shadow: inset 1px 10px 100px 20px rgba(0, 0, 0, 0.85);
-    border-radius: 30px;
     transition: all 1s ease;
-    overflow: hidden; 
     border: 0;
-    margin-left: -0.55px;
     background-clip: padding-box;  
     -moz-background-clip: padding;  
     -webkit-background-clip: padding;
 
     .overlay {
         width: 100%;
-        overflow: hidden; 
+        height: 100%;
         background-clip: padding-box;  
         -moz-background-clip: padding;  
         -webkit-background-clip: padding;
         display: flex;
         flex-direction: column;
         padding: 18px;
-        height: 100%;
         transition: 0.5s ease;
         gap: 18px;
     }
@@ -56,6 +52,7 @@
         margin-top: 36px;
         gap: 8px;
         font-family: var(--font-card);
+        letter-spacing: 1px;
         
         .section {
             gap: 4px;
@@ -78,6 +75,7 @@
 
         .class-text {
             font-size: 36px;
+            letter-spacing: 1px;
         }
 
         .section-desc {
@@ -94,7 +92,7 @@
 
     &:hover {
         .overlay {
-            background: #2b0017cb; 
+            background-color: #2b0017cb; 
         }
         
         .about {

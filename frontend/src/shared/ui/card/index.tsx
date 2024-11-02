@@ -11,7 +11,7 @@ interface Props {
 
 export function Card({ name, surname, avatar, desc, litera }: Props) {
     return (
-        <div className={styles['bg']} style={{ background: `url(${avatar}) repeat 0px 0px`}}>
+        <div className={styles['bg']} style={{ background: `linear-gradient(180.00deg, rgba(0, 0, 0, 0.8) 0%,rgba(0, 0, 0, 0) 50.239%), url(${avatar})`}}>
             <div className={styles['card']}>
                 <div className={styles['overlay']}>
                     <span className={styles['name']}>{name} {surname}</span>

@@ -1,3 +1,17 @@
+@keyframes like-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.6);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -21,10 +35,22 @@
                 border-radius: 180px;
                 .icon svg {
                     opacity: 0.8;
-                    width: 34px;
-                    height: 34px;
+                    width: 32px;
+                    height: 32px;
                     path {
                         fill: white;
+                    }
+                }
+
+                .active-like, .active-close {
+                    svg path {
+                        fill: var(--pink);
+                    }
+                    animation: like-animation 0.2s;
+                }
+                .active-close {
+                    svg {
+                        stroke: var(--pink);
                     }
                 }
             }
