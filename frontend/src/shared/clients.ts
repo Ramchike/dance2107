@@ -11,7 +11,7 @@ const test = "user%3D%7B%22id%22%3A123%2C%22first_name%22%3A%22Zoom%22%2C%22last
 
 
 UserClient.interceptors.request.use(config => {
-    config.headers['Tg-Authorization'] = test;
+    config.headers['Tg-Authorization'] = ramchike;
     return config
 })
 

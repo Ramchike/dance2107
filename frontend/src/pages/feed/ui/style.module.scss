@@ -12,11 +12,20 @@
     }
 }
 
+body {
+    overflow: hidden;
+}
+
 .main {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    transition: background 0.5s ease;
+    &[data-bg="NO"] {
+        background: rgba(19, 19, 19, 1.00);
+    }
     .container {
         height: 574px;
         .button-list {

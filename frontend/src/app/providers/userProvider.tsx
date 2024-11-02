@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { getUser, User } from "../../entities";
 
 interface IChildren {
@@ -8,6 +8,7 @@ interface IChildren {
 interface Props {
     user: User | undefined | null;
     updateUser: () => void;
+    setUser: Dispatch<SetStateAction<User | null | undefined>>;
 }
 
 export const UserContext = createContext<Props>({} as Props);
@@ -30,7 +31,7 @@ export default function UserProvider({ children }: IChildren) {
     }, [user])
     
     return (
-        <UserContext.Provider value={{ user, updateUser }}>
+        <UserContext.Provider value={{ user, updateUser, setUser }}>
             {children}
         </UserContext.Provider>
     );

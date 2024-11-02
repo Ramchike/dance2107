@@ -11,10 +11,10 @@ interface Props {
 
 export function Card({ name, surname, avatar, desc, litera }: Props) {
     return (
-        <div className={styles['bg']} style={{ background: `linear-gradient(180.00deg, rgba(0, 0, 0, 0.8) 0%,rgba(0, 0, 0, 0) 50.239%), url(${avatar})`}}>
+        <div className={styles['bg']} style={{ background: `linear-gradient(180.00deg, rgba(0, 0, 0, 0.85) 0%,rgba(0, 0, 0, 0) 60.239%), url(${avatar})`}}>
             <div className={styles['card']}>
                 <div className={styles['overlay']}>
-                    <span className={styles['name']}>{name} {surname}</span>
+                    <span className={styles['name']}>{surname} {name}</span>
                     <div className={styles['about']}>
                         <section className={`${styles['section']} ${styles['section-class']}`}>
                             <span className={styles['section-title']}>Класс</span>

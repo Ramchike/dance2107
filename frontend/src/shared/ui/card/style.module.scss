@@ -61,6 +61,7 @@
 
         .section-text {
             color: var(--white-pink);
+            width: 100%;
         }
 
         .section-title {
@@ -84,15 +85,17 @@
 
         .desc-text {
             font-size: 24px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            word-wrap: break-word;
+
         }
         
-        transition: opacity 0.5s ease; 
+        transition: opacity 0.3s ease; 
     }
 
     &:hover {
         .overlay {
-            background-color: #2b0017cb; 
+            background-color: #210012cb; 
         }
         
         .about {
