@@ -38,17 +38,31 @@ body {
             justify-content: center;
             gap: 32px;
             .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 width: 72px;
                 height: 72px;
                 background-color: var(--button-color);
                 border: 0;
+                text-align: center;
                 border-radius: 180px;
+                .icon {
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    justify-content: center;
+                }
                 .icon svg {
                     opacity: 0.8;
-                    width: 32px;
-                    height: 32px;
+                    width: 36px;
+                    height: 36px;
                     path {
                         fill: white;
+                    }
+                    div {
+                        display: flex;
+                        justify-content: center;
                     }
                 }
 

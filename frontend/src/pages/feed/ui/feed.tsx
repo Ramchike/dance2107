@@ -1,6 +1,6 @@
 import styles from './style.module.scss'
 import { FocusUser, User } from "../../../entities";
-import { cancel, Card, like } from '../../../shared';
+import { Card } from '../../../shared';
 import { ReactSVG } from 'react-svg';
 import { useContext, useRef, useState } from 'react';
 import { UserContext } from '../../../app/providers';
@@ -10,6 +10,9 @@ import { likeSend } from '../../../features/like';
 import { Button, Icon } from '@gravity-ui/uikit';
 import {ShieldExclamation} from '@gravity-ui/icons';
 import { ModalReport, reportSend } from '../../../features';
+import HeartFillIcon from '@gravity-ui/icons/svgs/heart-fill.svg';
+import XmarkIcon from '@gravity-ui/icons/svgs/xmark.svg';
+
 
 gsap.registerPlugin(useGSAP);
 
@@ -75,23 +78,23 @@ export function Feed({focus}: Props) {
                     tlSend.to(card.current, {x: -500, duration: 0.8, ease: 'slow'}, '>')
                 }
             }, [animClose])
-            useGSAP(
-                () => {
-                    if (animReport && card.current) {
-                        const tlSend = gsap.timeline()
-                        tlSend.to(card.current, {y: -20, duration: 0.3, ease: 'power1', onComplete: () => setBg(false)})
-                        tlSend.to(card.current, {scale: 0.8, duration: 0.4, ease: 'power1'}, '<')
-                        tlSend.to(card.current, {x: -500, duration: 0.8, ease: 'slow'}, '>')
+        useGSAP(
+            () => {
+                if (animReport && card.current) {
+                    const tlSend = gsap.timeline()
+                    tlSend.to(card.current, {y: -20, duration: 0.3, ease: 'power1', onComplete: () => setBg(false)})
+                    tlSend.to(card.current, {scale: 0.8, duration: 0.4, ease: 'power1'}, '<')
+                    tlSend.to(card.current, {x: -500, duration: 0.8, ease: 'slow'}, '>')
 
-                        setUser(newData.current)
+                    setUser(newData.current)
 
-                        const tlGet = gsap.timeline()
-                        tlGet.fromTo(card.current, {x: 500}, {x: 0, duration: 0.8, ease: 'power1'})
-                        tlGet.fromTo(card.current, {scale: 0.8}, {x: 0, scale: 1, duration: 0.4, ease: 'power1', onComplete: () => setBg(true)})
-                        newData.current = null
-                        setanimReport(false)
-                    }
-                }, [animReport])
+                    const tlGet = gsap.timeline()
+                    tlGet.fromTo(card.current, {x: 500}, {x: 0, duration: 0.8, ease: 'power1'})
+                    tlGet.fromTo(card.current, {scale: 0.8}, {x: 0, scale: 1, duration: 0.4, ease: 'power1', onComplete: () => setBg(true)})
+                    newData.current = null
+                    setanimReport(false)
+                }
+            }, [animReport])
     
 
     const onReport = () => {
@@ -113,14 +116,14 @@ export function Feed({focus}: Props) {
                 <button className={styles['button']}>
                     <ReactSVG
                     className={`${styles['icon']} ${animLike ? styles['active-like'] : styles['like']}`}
-                    src={like}
+                    src={HeartFillIcon}
                     onClick={() => setLike(true)}
                     />  
                 </button>
                 <button className={styles['button']}>
                     <ReactSVG
                     className={`${styles['icon']} ${animClose ? styles['active-close'] : styles['close']}`}
-                    src={cancel}
+                    src={XmarkIcon}
                     onClick={() => setClose(true)}
                     />
                 </button>
