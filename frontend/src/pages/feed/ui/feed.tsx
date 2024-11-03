@@ -27,7 +27,7 @@ export function Feed({focus}: Props) {
     const [bg, setBg] = useState(true);
     const card = useRef<HTMLDivElement>(null);
     const newData = useRef<User | null | undefined>(null)
-    const {setUser} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     const [reportModal, setReportModal] = useState<boolean>(false)
     const [reportContent, setReportContent] = useState<string>('')
 
@@ -108,10 +108,10 @@ export function Feed({focus}: Props) {
     if (!focus) {
         <main data-bg={"NO"} className={styles['main']}>
     </main>
-    } else return <main data-bg={bg ? "YES" : "NO"} className={styles['main']}>
+    } else if (user) return <main data-bg={bg ? "YES" : "NO"} className={styles['main']}>
         <ModalReport func_hook={onReport} content={reportContent} content_hook={setReportContent} is_open={reportModal} close_hook={() => setReportModal(false)}></ModalReport>
         <div ref={card} className={styles['container']}>
-            <Card name={focus.name} surname={focus.surname} avatar={focus.attachments[0]} desc={focus.desc} litera={focus.literal}></Card>
+            <Card name={focus.name} surname={focus.surname} avatar={focus.attachments[0]} desc={focus.desc} litera={focus.literal} is_me_liked={user.focus_is_liked} is_verify={focus.verify}></Card>
             <div className={styles['button-list']}>
                 <button className={styles['button']}>
                     <ReactSVG
