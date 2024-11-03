@@ -4,6 +4,7 @@ import {Auth} from '../../pages'
 import { UserContext } from '../providers'
 import { editIcon, feedIcon, historyIcon, NavBar, NavIcon } from '../../shared'
 import { Router } from '../router/router'
+import { ReactNotifications } from 'react-notifications-component'
 
 export type Page = 'feed' | 'history' | 'edit'
 
@@ -26,6 +27,7 @@ export function App() {
     ]
 
     return <main className={styles['main']}>
+      <ReactNotifications></ReactNotifications>
       <NavBar buttons={buttons}/>
       <Router page={page} focus={user.focus_user}/>
     </main>

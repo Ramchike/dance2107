@@ -23,6 +23,7 @@ body {
     align-items: center;
     height: 100%;
     transition: background 0.5s ease;
+    line-height: normal;
     &[data-bg="NO"] {
         background: rgba(19, 19, 19, 1.00);
     }
@@ -63,6 +64,25 @@ body {
                     }
                 }
             }
+        }
+    }
+    .bottom-widget-container {
+        pointer-events: none;
+        display: flex;
+        flex-direction: column-reverse;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        --g-button-font-size: 12px;
+        --g-text-body-font-weight: 300;
+        .button-container {
+            pointer-events: all;
+            opacity: 0.5;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            width: 100%;
+            height: 64px;
         }
     }
 }

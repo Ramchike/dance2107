@@ -14,7 +14,7 @@ export type NavIcon = {
 export function NavBar({buttons}: Props) {
 
     const buttonsList = buttons.map(button => {
-        return <button data-active={button.active ? 'YES' : 'NO'} className={styles['icon-button']} onClick={button.hook}>
+        return <button key={button.src} data-active={button.active ? 'YES' : 'NO'} className={styles['icon-button']} onClick={button.hook}>
             <ReactSVG
             data-active={button.active ? 'YES' : 'NO'}
             className={styles['icon']}
